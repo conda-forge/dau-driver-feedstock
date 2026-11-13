@@ -21,7 +21,7 @@ source:
     file_name: robin-map-LICENSE
 
 build:
-  number: 0
+  number: 1
   skip: match(python, "<3.12")
   script:
     interpreter: python
