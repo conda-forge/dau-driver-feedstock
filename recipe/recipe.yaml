@@ -21,12 +21,13 @@ source:
     file_name: robin-map-LICENSE
 
 build:
-  number: 0
-  skip: match(python, "<3.12")
+  number: 1
+  skip: not (match(python, python_min ~ ".*") and is_abi3)
   script:
     interpreter: python
     file: build.py
   python:
+    version_independent: ${{ is_abi3 }}
     entry_points:
       - dau-xdma-macos-probe = dau_driver.macos_xdma:main
       - dau-driver-verify-advertisement = dau_driver.verify_advertisement:main
@@ -42,6 +43,9 @@ requirements:
     - nanobind
     - nanobind-abi
     - pip
+    - if: is_abi3
+      then:
+        - python-abi3
   run:
     - python
     - dau-core >=0.2
@@ -54,6 +58,18 @@ tests:
         - dau_driver.extension
         - dau_driver.native
       pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+        - "*"
+  - if: is_abi3
+    then:
+      script:
+        - if: win
+          then: abi3audit %SP_DIR%/dau_driver/extension.pyd -s -v --assume-minimum-abi3 ${{ python_min }}
+          else: abi3audit $SP_DIR/dau_driver/extension.abi3.so -s -v --assume-minimum-abi3 ${{ python_min }}
+      requirements:
+        run:
+          - abi3audit
   - requirements:
       run:
         - pytest
