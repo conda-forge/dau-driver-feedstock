@@ -1,0 +1,4 @@
+# nanobind's stable ABI and dau-driver's requires-python both start at 3.12,
+# above the global pinning's python_min. Remove once the global pinning reaches 3.12.
+python_min:
+  - '3.12'
