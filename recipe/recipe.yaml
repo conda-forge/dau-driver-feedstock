@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "0.1.0"
+  version: "0.3.0"
 
 package:
   name: dau-driver
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/d/dau-driver/dau_driver-${{ version }}.tar.gz
-    sha256: ec6186f140ccba8866126fb768ae40667d5295ff36cc3fc4cee15cf3d566eef6
+    sha256: e2e09e0f296c1058e4906dfccb9b4889ac4787c020df8b809577775735d42407
     patches:
       # Linux XDMA transfer tests require POSIX pread/pwrite, absent on Windows.
       - skip-posix-xdma-tests-on-windows.patch
@@ -21,7 +21,7 @@ source:
     file_name: robin-map-LICENSE
 
 build:
-  number: 1
+  number: 0
   skip: not (match(python, python_min ~ ".*") and is_abi3)
   script:
     interpreter: python
@@ -48,7 +48,7 @@ requirements:
         - python-abi3
   run:
     - python
-    - dau-core >=0.2
+    - dau-core >=0.5
     - pyyaml
 
 tests:
