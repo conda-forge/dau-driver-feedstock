@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "0.3.0"
+  version: "0.3.1"
 
 package:
   name: dau-driver
@@ -9,10 +9,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/d/dau-driver/dau_driver-${{ version }}.tar.gz
-    sha256: e2e09e0f296c1058e4906dfccb9b4889ac4787c020df8b809577775735d42407
-    patches:
-      # Linux XDMA transfer tests require POSIX pread/pwrite, absent on Windows.
-      - skip-posix-xdma-tests-on-windows.patch
+    sha256: 2375eb2e6307275ec50ca1116bab6a9decd19b4c68eb9b7fe7f35a5614e5a364
   - url: https://raw.githubusercontent.com/wjakob/nanobind/v3.1.0/LICENSE
     sha256: f305091a4e57805870b217a28ea4b1f16610eece8457d2370f822a9696b75836
     file_name: nanobind-LICENSE
@@ -76,6 +73,7 @@ tests:
         - pyarrow
     files:
       source:
+        - dau_driver/tests/conftest.py
         - dau_driver/tests/test_native.py
         - dau_driver/tests/test_record_batch_codec.py
         - dau_driver/tests/test_register_write.py
