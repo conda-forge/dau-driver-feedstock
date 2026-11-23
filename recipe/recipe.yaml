@@ -45,7 +45,7 @@ requirements:
         - python-abi3
   run:
     - python
-    - dau-core >=0.5
+    - dau-core >=0.14
     - pyyaml
 
 tests:
