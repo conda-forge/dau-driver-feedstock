@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "0.4.0"
+  version: "0.5.0"
 
 package:
   name: dau-driver
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://pypi.org/packages/source/d/dau-driver/dau_driver-${{ version }}.tar.gz
-    sha256: ad3463692ca6dc0a2daa7a6bfc52b0e279b5523991c155e7f5e5c9f07e83303f
+    sha256: 00df2255475e7793b1bb381a4ed2a6b1e1c14af50191694ff57a746fab7db3ef
   - url: https://raw.githubusercontent.com/wjakob/nanobind/v3.1.0/LICENSE
     sha256: f305091a4e57805870b217a28ea4b1f16610eece8457d2370f822a9696b75836
     file_name: nanobind-LICENSE
@@ -45,7 +45,7 @@ requirements:
         - python-abi3
   run:
     - python
-    - dau-core >=0.5
+    - dau-core >=0.14
     - pyyaml
 
 tests:
